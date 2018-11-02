@@ -60,3 +60,30 @@ class Solution13:
 
 
 
+
+################################################################################
+#solution15: 3sum
+
+nums = [-1, 0, 1, 2, -1, -4]
+
+
+class Solution:
+	def threeSum(self, nums):
+
+		nums.sort()
+		A = []
+		nums1 = nums
+		for i in nums:
+			numsi = [x for x in nums if x != i]
+			for j in numsi:
+				numsi.remove(j)
+				if (-i - j) in numsi:
+					a = [i, j, (-i - j)]
+					a.sort()
+					A.append(a)
+
+			nums = nums1
+		A = sorted(A)
+		dedup = [A[i] for i in range(len(A)) if i == 0 or A[i] != A[i - 1]]
+
+		return dedup
